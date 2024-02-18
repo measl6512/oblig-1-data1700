@@ -1,91 +1,84 @@
-// array for å lagre billetter
-let billetter = [];
+let billettene = [];  //gjør om arrayet fra kjøpBillett funksjonen global for å hente den til slettBillett funksjonen.
 
-//funksjon for å kjøpe en billett
-function kjøpBillett() {
-    //hent verdier fra inputfeltene
-    let film = document.getElementById('film').value;
-    let antall = document.getElementById('antall').value;
-    let fornavn = document.getElementById('fornavn').value;
-    let etternavn = document.getElementById('etternavn').value;
-    let telefonnummer = document.getElementById('telefonnummer').value;
-    let epost = document.getElementById('epost').value;
+    function kjopBillett() {
 
-   // Validering av input
-   let valideringsfeil = false;
-   if (film.trim() === '' || isNaN(antall) || antall < 1 || antall > 9 || fornavn.trim() === '' || etternavn.trim() === '' || telefonnummer.trim() === '' || epost.trim() === '') {
-    valideringsfeil = true;
+        //Lager variabler ved å hente inn value fra html taggene jeg har laget.
+        let valgtFilm = document.getElementById("filmer").value;
+        let valgteBilletter = document.getElementById("antallBillett").value;
+        let valgtFornavn = document.getElementById("velgFornavn").value;
+        let valgtEtternavn = document.getElementById("velgEtternavn").value;
+        let valgtTelefonnr = document.getElementById("velgtlfNr").value;
+        let valgtEpost = document.getElementById("velgEpost").value;
 
-    // Merk feltene med valideringsfeil ved å legge til klassen "valideringsfeil"
+        const billett1 = {     //Lager et objekt og setter inn lagde variabler.
+            film: valgtFilm,
+            antall: valgteBilletter,
+            fornavn: valgtFornavn,
+            etternavn: valgtEtternavn,
+            telefonnummer: valgtTelefonnr,
+            epost: valgtEpost
+        };
 
-    if (film.trim() === '') document.getElementById('film').classList.add('valideringsfeil');
-    if (isNaN(antall) || antall < 1 || antall > 9) document.getElementById('antall').classList.add('valideringsfeil');
-    if (fornavn.trim() === '') document.getElementById('fornavn').classList.add('valideringsfeil');
-    if (etternavn.trim() === '') document.getElementById('etternavn').classList.add('valideringsfeil');
-    if (telefonnummer.trim() === '') document.getElementById('telefonnummer').classList.add('valideringsfeil'); // Endret 'telefon' til 'telefonnummer'
-    if (epost.trim() === '') document.getElementById('epost').classList.add('valideringsfeil');
-}
+        if(billett1.antall === ""){
+            document.getElementById("feilAntall").innerHTML = "Må skrive noe inn i antall";
+        }
+        else{
+            document.getElementById("feilAntall").innerHTML = "";
+        }
+        if(billett1.fornavn === ""){
+            document.getElementById("feilFornavn").innerHTML = "Må skrive noe inn i fornavn";
+        }
+        else{
+            document.getElementById("feilFornavn").innerHTML = "";
+        }
+        if(billett1.etternavn === ""){
+            document.getElementById("feilEtternavn").innerHTML = "Må skrive noe inn i etternavn";
+        }
+        else {
+            document.getElementById("feilEtternavn").innerHTML = "";
+        }
+        if(billett1.telefonnummer === ""){
+            document.getElementById("feilTlfnr").innerHTML = "Må skrive noe inn i telefonnummer";
+        }
+        else {
+            document.getElementById("feilTlfnr").innerHTML = "";
+        }
+        if(billett1.epost === ""){
+            document.getElementById("feilEpost").innerHTML = "Må skrive noe inn i epost";
+        }
+        else {
+            document.getElementById("feilEpost").innerHTML = "";
+        }
 
-//Funksjon for å slette alle billetter
-function slettAlleBilletter() {
-    billetter = []; //tøm billetter-arrayet
-    visBilletter(); // oppdater visningen
-}
-    // Hvis det er valideringsfeil, vis en feilmelding og avslutt funksjonen
-    if (valideringsfeil) {
-        alert('Vennligst fyll ut alle feltene korrekt.');
-        return;
+        billettene.push(billett1); // pusher/setter inn objektet vi laget inn i arrayet.
+        skrivUt();
+
+        //Henter verdiene som oppe uten å sette det til noen variabler. Setter to hermetegn for å blanke de ut.
+        document.getElementById("filmer").value = "";
+        document.getElementById("antallBillett").value = "";
+        document.getElementById("velgFornavn").value = "";
+        document.getElementById("velgEtternavn").value = "";
+        document.getElementById("velgtlfNr").value = "";
+        document.getElementById("velgEpost").value = "";
+
     }
+    function skrivUt() { //kjører gjennom en for-løkke for å skrive ut verdier vi har laget i objektet og satt inn i arrayet.
+        let ut = "";
+        for (let i = 0; i < billettene.length; i++) {
+            ut += billettene[i].film + " " + billettene[i].antall + " " + billettene[i].fornavn
+                + " " + billettene[i].etternavn + " " + billettene[i].telefonnummer +
+                " " + billettene[i].epost;
+        }
+        document.getElementById("utskrift").innerHTML = ut;
+    }
+    function slettBillett() {
 
-    // Fjern valideringsfeilklassen fra feltene som nå er fylt ut riktig
-    fjernValideringsfeil();
+        billettene = [];  //tømmer arrayet ved å sette den tom.
+        console.log(billettene); //sjekker i konsollen og får da et tom array når jeg trykker slett billett.
+        skrivUt(); /*kaller på metoden som skriver ut, etter å ha tømt arrayet. Da sletter jeg også teksten som tilhører
+                    den slettede billetten. */
+    }
+</script>
 
-    //lag et billettobjekt og legg til i biletter-arrayet
-    let billett = {
-        film: film,
-        antall: antall,
-        fornavn: fornavn,
-        etternavn: etternavn,
-        telefonnummer: telefonnummer,
-        epost: epost
-    };
-    billetter.push(billett);
-
-    //oppdater visningen
-    visBilletter();
-    //tøm inputfeltene
-    tømInputfelt();
-
-}
-
-//funksjon for å vise alle billetter
-function visBilletter() {
-    let billettListe = document.getElementById('billettListe');
-    billettListe.innerHTML = ''; //Tøm listen først
-
-    //Gå gjennom hvert billettobjekt i billetter-arrayet
-    billetter.forEach(billett => {
-        let li = document.createElement('li');
-        li.textContent = `Film: ${billett.film}, Antall: ${billett.antall}, Navn: ${billett.fornavn} ${billett.etternavn}, Telefonnummer: ${billett.telefonnummer}, E-post: ${billett.epost}`;
-        billettListe.appendChild(li);
-    });
-
-}
-
-// Funksjon for å fjerne valideringsfeilklassen fra alle inputfeltene
-function fjernValideringsfeil() {
-    let inputFelt = document.querySelectorAll('.valideringsfeil');
-    inputFelt.forEach(felt => {
-        felt.classList.remove('valideringsfeil');
-    });
-}
-
-//funksjon for å tømme inputfeltene etter kjøp av billetter
-function tømInputfelt() {
-    document.getElementById('film').value = '';
-    document.getElementById('antall').value = '';
-    document.getElementById('fornavn').value = '';
-    document.getElementById('etternavn').value = '';
-    document.getElementById('telefonnummer').value = '';
-    document.getElementById('epost').value = '';
-}
+</body>
+</html>

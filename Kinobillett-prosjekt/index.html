@@ -1,49 +1,62 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Kinobillettregistrering</title>
-    </head>
-    <body>
-        <h1>Bestilling av Kinobilletter</h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Jessheim Kino</title>
+    <script src="app.js"></script> <!-- Kobler sammen filen med javascript filen jeg har laget. -->
+</head>
+<body>
 
-        <!-- Filmvalg -->
-        <label for="film">Velg film:</label>
-        <select id="film">
-            <option value="velg film">Velg film</option>
-            <option value="bob Marley: One Love">Bob Marley: One Love</option>
-            <option value="madame Web">Madame Web</option>
-            <option value="aquaman and the Lost Kingdom">Aquaman and the Lost Kingdom</option>
-        </select><br><br>
+<h1>Bestilling av Kinobilletter</h1>
 
-        <!-- Antall billetter -->
-        <label for="Antall">Antall:</label>
-        <input type="number" id="antall" min="1" max="9"><br><br>
-        
-        <!-- Personlig informasjon -->
-        <label for="Fornavn">Fornavn:</label>
-        <input type="text" id="fornavn" class="valideringsfeil"><br><br>
 
-        <label for="Etternavn">Etternavn:</label>
-        <input type="text" id="etternavn" class="valideringsfeil"><br><br>
+<label for="filmer">Velg film</label>
+<select id="filmer">
+    <option value="Velg film">Velg film</option>
+    <option value="Bob Marley: One Love">Bob Marley: One Love</option>
+    <option value="Madame Web">Madame Web</option>
+    <option value="Mr Beans ferie">Mr Beans Ferie</option>
+    <option value="Bodyguard">Bodyguard</option></select><br><br>
 
-        <label for="Telefonnummer">Telefonnummer:</label>
-        <input for="tel" id="phone" pattern="[0-9]{8}" title="Telefonnummer må bestå av 8 siffer" class="valideringsfeil"><br><br>
+<label for="antallBillett">Antall</label>
+<input id="antallBillett" type="text">
+<span id="feilAntall" style="color: red"></span><br><br>
 
-        <label for="E-post">E-post:</label>
-        <input type="Epost" id="epost" class="valideringsfeil"><br><br>
+<label for="velgFornavn">Fornavn</label>
+<input id="velgFornavn" type="text">
+<span id="feilFornavn" style="color: red"></span><br><br>
 
-        <!-- Kjøp billett knapp -->
-        <button onclick="kjøpBillett()">Kjøp billett</button>
+<label for="velgEtternavn">Etternavn</label>
+<input id="velgEtternavn" type="text">
+<span id="feilEtternavn" style="color: red"></span><br><br>
 
-        <!-- Liste over billetter -->
-        <h2>Alle billetter</h2>
-        <ul id="billettListe"></ul>
+<label for="velgtlfNr">Telefonnr</label>
+<input id="velgtlfNr" type="text">
+<span id="feilTlfnr" style="color: red"></span><br><br>
 
-        <!-- Slett alle billetter knapp -->
-        <button onclick="slettAlleBilletter()">Slett alle billetter</button>
-        
-        <script src="app.js"></script>
-    </body>
-</html>
+<label for="velgEpost">Epost</label>
+<input id="velgEpost" type="text">
+<span id="feilEpost" style="color: red"></span><br><br>
+
+<button onclick="kjopBillett();">Kjøp billett</button>
+
+<h2>Alle billetter</h2>
+
+<div id="utskrift"></div><br><br>
+
+<button onclick="slettBillett()">Slett alle billettene</button><br><br>
+
+
+
+<br>
+<br>
+
+<!--
+<div id="resultatFilm"></div>
+<div id="resultatAntall"></div>
+<div id="resultatFornavn"></div>
+<div id="resultatEtternavn"></div>
+<div id="resultatTelefonnr"></div>
+<div id="resultatEpost"></div>
+Brukte denne for å få listet opp verdiene før jeg laget objekt og array som
+ oppgaven spør etter.
