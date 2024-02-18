@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kinobillettregistrering</title>
+    </head>
+    <body>
+        <h1>Bestilling av Kinobilletter</h1>
+
+        <!-- Filmvalg -->
+        <label for="film">Velg film:</label>
+        <select id="film">
+            <option value="velg film">Velg film</option>
+            <option value="bob Marley: One Love">Bob Marley: One Love</option>
+            <option value="madame Web">Madame Web</option>
+            <option value="aquaman and the Lost Kingdom">Aquaman and the Lost Kingdom</option>
+        </select><br><br>
+
+        <!-- Antall billetter -->
+        <label for="Antall">Antall:</label>
+        <input type="number" id="antall" min="1" max="9"><br><br>
+        
+        <!-- Personlig informasjon -->
+        <label for="Fornavn">Fornavn:</label>
+        <input type="text" id="fornavn" class="valideringsfeil"><br><br>
+
+        <label for="Etternavn">Etternavn:</label>
+        <input type="text" id="etternavn" class="valideringsfeil"><br><br>
+
+        <label for="Telefonnummer">Telefonnummer:</label>
+        <input for="tel" id="phone" pattern="[0-9]{8}" title="Telefonnummer må bestå av 8 siffer" class="valideringsfeil"><br><br>
+
+        <label for="E-post">E-post:</label>
+        <input type="Epost" id="epost" class="valideringsfeil"><br><br>
+
+        <!-- Kjøp billett knapp -->
+        <button onclick="kjøpBillett()">Kjøp billett</button>
+
+        <!-- Liste over billetter -->
+        <h2>Alle billetter</h2>
+        <ul id="billettListe"></ul>
+
+        <!-- Slett alle billetter knapp -->
+        <button onclick="slettAlleBilletter()">Slett alle billetter</button>
+        
+        <script src="app.js"></script>
+    </body>
+</html>
