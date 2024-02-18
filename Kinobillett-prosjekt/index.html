@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,17 +9,16 @@
 
 <h1>Bestilling av Kinobilletter</h1>
 
-
-<label for="filmer">Velg film</label>
-<select id="filmer">
+<label for="film">Velg film:</label>
+<select id="film">
     <option value="Velg film">Velg film</option>
     <option value="Bob Marley: One Love">Bob Marley: One Love</option>
     <option value="Madame Web">Madame Web</option>
-    <option value="Mr Beans ferie">Mr Beans Ferie</option>
     <option value="Bodyguard">Bodyguard</option></select><br><br>
 
+    <!-- Antall billetter-->
 <label for="antallBillett">Antall</label>
-<input id="antallBillett" type="text">
+<input id="antallBillett" type="number" min="1" max="9">
 <span id="feilAntall" style="color: red"></span><br><br>
 
 <label for="velgFornavn">Fornavn</label>
