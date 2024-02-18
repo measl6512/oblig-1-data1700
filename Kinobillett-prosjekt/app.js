@@ -11,19 +11,26 @@ function kjøpBillett() {
     let telefonnummer = document.getElementById('telefonnummer').value;
     let epost = document.getElementById('epost').value;
 
-    // Validering av input
-    let valideringsfeil = false;
-    if (film.trim() === '' || isNaN(antall) || antall < 1 || antall > 9 || fornavn.trim() === '' || etternavn.trim() === '' || telefonnummer.trim() === '' || epost.trim() === '') {
-        valideringsfeil = true;
-        // Merk feltene med valideringsfeil ved å legge til klassen "valideringsfeil"
-        if (film.trim() === '') document.getElementById('film').classList.add('valideringsfeil');
-        if (isNaN(antall) || antall < 1 || antall > 9) document.getElementById('antall').classList.add('valideringsfeil');
-        if (fornavn.trim() === '') document.getElementById('fornavn').classList.add('valideringsfeil');
-        if (etternavn.trim() === '') document.getElementById('etternavn').classList.add('valideringsfeil');
-        if (telefonnummer.trim() === '') document.getElementById('telefon').classList.add('valideringsfeil');
-        if (epost.trim() === '') document.getElementById('epost').classList.add('valideringsfeil');
-    }
+   // Validering av input
+   let valideringsfeil = false;
+   if (film.trim() === '' || isNaN(antall) || antall < 1 || antall > 9 || fornavn.trim() === '' || etternavn.trim() === '' || telefonnummer.trim() === '' || epost.trim() === '') {
+    valideringsfeil = true;
 
+    // Merk feltene med valideringsfeil ved å legge til klassen "valideringsfeil"
+
+    if (film.trim() === '') document.getElementById('film').classList.add('valideringsfeil');
+    if (isNaN(antall) || antall < 1 || antall > 9) document.getElementById('antall').classList.add('valideringsfeil');
+    if (fornavn.trim() === '') document.getElementById('fornavn').classList.add('valideringsfeil');
+    if (etternavn.trim() === '') document.getElementById('etternavn').classList.add('valideringsfeil');
+    if (telefonnummer.trim() === '') document.getElementById('telefonnummer').classList.add('valideringsfeil'); // Endret 'telefon' til 'telefonnummer'
+    if (epost.trim() === '') document.getElementById('epost').classList.add('valideringsfeil');
+}
+
+//Funksjon for å slette alle billetter
+function slettAlleBilletter() {
+    billetter = []; //tøm billetter-arrayet
+    visBilletter(); // oppdater visningen
+}
     // Hvis det er valideringsfeil, vis en feilmelding og avslutt funksjonen
     if (valideringsfeil) {
         alert('Vennligst fyll ut alle feltene korrekt.');
@@ -73,18 +80,12 @@ function fjernValideringsfeil() {
     });
 }
 
-//Funksjon for å slette alle billetter
-function slettAlleBilletter() {
-    billetter = []; //tøm billetter-arrayet
-    visBilletter(); // oppdater visningen
-}
-
 //funksjon for å tømme inputfeltene etter kjøp av billetter
 function tømInputfelt() {
     document.getElementById('film').value = '';
     document.getElementById('antall').value = '';
     document.getElementById('fornavn').value = '';
     document.getElementById('etternavn').value = '';
-    document.getElementById('telefon').value = '';
+    document.getElementById('telefonnummer').value = '';
     document.getElementById('epost').value = '';
 }
